@@ -43,9 +43,8 @@ public class AddUserTest extends BaseTest {
         users.saveUser();
 
         // после users.saveUser() и проверки toast
-        users.waitForRecordsFound(3000);                // дождаться, что список загрузился (если есть)
-        users.searchByUsernameIfFilterExists(username); // если есть фильтр — применим его
-        boolean found = users.waitAndFindUsernameInTable(username, 5000); // подождём до 5 сек
+        users.waitForRecordsFound(3000);
+        boolean found = users.waitAndFindUsernameInTable(username, 5000);
 
         Assertions.assertTrue(found, "Created user not found in table: " + username);
         if (found){

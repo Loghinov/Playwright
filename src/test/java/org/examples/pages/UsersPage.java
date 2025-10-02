@@ -14,8 +14,6 @@ public class UsersPage {
         this.page = page;
     }
 
-    //--------------------Locatori--------------------
-
     private Locator addUserButton() {
         return page.locator("button:has-text('Add')");
     }
@@ -55,8 +53,6 @@ public class UsersPage {
     private Locator tableRows() {
         return page.locator("div[role='row']");
     }
-
-    //--------------------Metodele--------------------------
 
     public void clickAddUser() {
         addUserButton().click();
@@ -131,7 +127,6 @@ public class UsersPage {
             }
 
             // если до сюда дошли — выбор, видимо, не сработал
-            // Сделаем скрин для диагностики и бросим понятную ошибку
             try {
                 page.screenshot(new Page.ScreenshotOptions()
                         .setPath(java.nio.file.Paths.get("target", "screenshots", "employee_autocomplete_no_option.png")));
@@ -141,12 +136,8 @@ public class UsersPage {
         } catch (RuntimeException re) {
             throw re;
         } catch (Exception ex) {
-            // общий catch — также сделаем скрин и пробросим
-            try {
-                page.screenshot(new Page.ScreenshotOptions()
-                        .setPath(java.nio.file.Paths.get("target", "screenshots", "employee_autocomplete_error.png")));
-            } catch (Exception ignored) {}
-            throw new RuntimeException("Error while trying to select employee autocomplete for input '" + inputText + "': " + ex.getMessage(), ex);
+            throw new RuntimeException(        "Error while trying to select employee autocomplete for input '" + inputText + "': " + ex.getMessage(), ex
+            );
         }
     }
 
@@ -176,32 +167,6 @@ public class UsersPage {
             log.info("'Records Found' appeared");
         } catch (Exception ignored) {
             log.warning("'Records Found' section did not appear within " + timeoutMs + "ms");
-        }
-    }
-
-    /**
-     * Если на странице есть фильтр/поиск по username — заполняем его и выполняем поиск.
-     * Метод не бросает ошибку, если поле поиска отсутствует.
-     */
-    public void searchByUsernameIfFilterExists(String username) {
-        log.info("Searching for username in filter if exists: " + username);
-        Locator searchInput = page.locator("input[placeholder*='Username'], input[name='username']");
-        if (searchInput.count() > 0) {
-            searchInput.first().fill(username);
-
-            // нажать Search если кнопка есть
-            Locator searchBtn = page.locator("button:has-text('Search'), button:has-text('Find')");
-            if (searchBtn.count() > 0) {
-                searchBtn.first().click();
-            } else {
-                searchInput.first().press("Enter");
-            }
-
-            // ждём обновления таблицы
-            try {
-                page.waitForSelector("div[role='row']", new Page.WaitForSelectorOptions()
-                        .setState(WaitForSelectorState.VISIBLE).setTimeout(3000));
-            } catch (Exception ignored) {}
         }
     }
 

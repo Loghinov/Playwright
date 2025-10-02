@@ -37,7 +37,6 @@ public class DashboardLinksTest extends BaseTest {
         Assertions.assertTrue(popupHandled, "After Cancel we are NOT on the Dashboard page");
         Assertions.assertTrue(page.url().contains("/dashboard"), "URL does not indicate Dashboard page");
 
-// Если хочешь, можно ещё убедиться, что баннер виден
         page.waitForSelector("img[alt='client brand banner']",
                 new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
         log.info("DashboardLinksTest finished");

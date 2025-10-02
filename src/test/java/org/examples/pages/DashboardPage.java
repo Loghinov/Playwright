@@ -29,7 +29,6 @@ public class DashboardPage {
      * Возвращает true только если после этого мы оказались на Dashboard
      * (проверка по баннеру или по URL). Если после Cancel не вернулись —
      * выполняется fallback: клик по Dashboard и повторная проверка.
-     *
      * Если поп-ап не появился в timeout — возвращается false.
      */
     public boolean waitForAdminPopupAndCancel(long timeout) {
