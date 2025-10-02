@@ -127,10 +127,6 @@ public class UsersPage {
             }
 
             // если до сюда дошли — выбор, видимо, не сработал
-            try {
-                page.screenshot(new Page.ScreenshotOptions()
-                        .setPath(java.nio.file.Paths.get("target", "screenshots", "employee_autocomplete_no_option.png")));
-            } catch (Exception ignored) {}
 
             throw new RuntimeException("Autocomplete selection failed: no options appeared or selection not applied for input '" + inputText + "'");
         } catch (RuntimeException re) {

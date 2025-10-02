@@ -6,7 +6,6 @@ import org.examples.pages.LoginPage;
 import org.examples.pages.UsersPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.logging.Logger;
 
 public class AddUserTest extends BaseTest {

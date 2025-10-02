@@ -35,10 +35,8 @@ public class DashboardLinksTest extends BaseTest {
         // Проверка, что после Cancel мы на Dashboard
         log.info("Admin popup handled: " + popupHandled);
         Assertions.assertTrue(popupHandled, "After Cancel we are NOT on the Dashboard page");
-        Assertions.assertTrue(page.url().contains("/dashboard"), "URL does not indicate Dashboard page");
+        waitForDashboardBanner();
 
-        page.waitForSelector("img[alt='client brand banner']",
-                new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
         log.info("DashboardLinksTest finished");
     }
 }

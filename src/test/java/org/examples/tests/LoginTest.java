@@ -2,12 +2,8 @@ package org.examples.tests;
 
 import org.examples.base.BaseTest;
 import org.examples.pages.LoginPage;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.WaitForSelectorState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class LoginTest extends BaseTest {
